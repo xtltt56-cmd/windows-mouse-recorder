@@ -1,0 +1,25 @@
+# Python cache and test artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Generated PyInstaller build output
+/build/
+
+# Runtime logs and temporary files
+*.log
+*.tmp
+
+# Unrelated workspace content
+/行政部述职_2026_build/
