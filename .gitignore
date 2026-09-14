@@ -10,12 +10,14 @@ htmlcov/
 
 # Local virtual environments
 .venv/
+/.venv-build/
 venv/
 env/
 ENV/
 
 # Generated PyInstaller build output
 /build/
+/dist/
 
 # Runtime logs and temporary files
 *.log
