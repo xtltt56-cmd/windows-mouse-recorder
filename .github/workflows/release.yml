@@ -35,6 +35,24 @@ jobs:
       - name: Build Windows executable
         run: python -m PyInstaller --noconfirm --clean --onefile --windowed --name MouseClicker main.py
 
+      - name: Smoke test packaged executable
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $executable = (Resolve-Path -LiteralPath "dist\MouseClicker.exe").Path
+          $smokeProcess = Start-Process -FilePath $executable -WindowStyle Hidden -PassThru
+          try {
+              Start-Sleep -Seconds 3
+              $smokeProcess.Refresh()
+              if ($smokeProcess.HasExited) {
+                  throw "MouseClicker.exe exited unexpectedly with code $($smokeProcess.ExitCode)"
+              }
+          } finally {
+              if (-not $smokeProcess.HasExited) {
+                  Stop-Process -Id $smokeProcess.Id -ErrorAction Stop
+              }
+          }
+
       - name: Generate SHA-256 checksum
         shell: pwsh
         run: |
