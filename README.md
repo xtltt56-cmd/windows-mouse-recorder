@@ -2,6 +2,14 @@
 
 这是一个 Windows 桌面鼠标录制与回放工具。它会在整个桌面范围内记录鼠标移动、左/右/中键、双击、滚轮和拖动，并按录制时的绝对坐标与事件间隔回放。
 
+## 下载最新版（推荐）
+
+[直接下载最新版 MouseClicker.exe](https://github.com/xtltt56-cmd/windows-mouse-recorder/releases/latest/download/MouseClicker.exe)
+
+这个固定链接始终指向最近一次通过自动测试和 Windows 打包的版本，不需要安装 Python。历史版本和 SHA-256 校验文件可在 [Releases 页面](https://github.com/xtltt56-cmd/windows-mouse-recorder/releases/latest) 查看。
+
+每次 `main` 分支更新后，GitHub Actions 会自动运行测试、重新生成 Windows 可执行文件，并在构建成功后将其设为最新 Release。构建失败时不会替换上一版可用程序。
+
 ## 环境要求
 
 - Windows 10/11
@@ -10,7 +18,7 @@
 
 ## 安装与启动
 
-在项目目录运行：
+需要从源码运行时，在项目目录执行：
 
 ```powershell
 python -m pip install -r requirements.txt
@@ -62,7 +70,9 @@ py -3.12 main.py
 运行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\build.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
 ```
 
 生成文件：`dist\MouseClicker.exe`。
+
+本地打包与 GitHub 自动发布都使用 `requirements-build.txt` 中固定的已验证依赖版本。仓库不再保存可能过期的 `dist` 二进制副本；面向普通用户的可执行文件统一从 Releases 下载。
